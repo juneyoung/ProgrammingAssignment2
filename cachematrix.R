@@ -1,7 +1,12 @@
+# you can call this function with a matrix
+# i.e. 
+# x <- matrix(rnorm(16), 4, 4)
+# makeCacheMatrix(x)
 makeCacheMatrix <- function (x = matrix()) {
   # This function creates a special "matrix" object that can cache its inverse. 
   ret <- NULL
   
+  # define setters and getters
   set <- function (y) {
     x <<- y
     ret <<- NULL
@@ -15,11 +20,15 @@ makeCacheMatrix <- function (x = matrix()) {
   
   getInverse <- function () ret
   
+  # you can access returnValue$method
   list(set = set, get = get,
        setInverse = setInverse,
        getInverse = getInverse)
 }
 
+# i.e
+# m <- makeCacheMatrix(x)
+# cacheSolve(m)
 cacheSolve <- function (x, ...) {
   # This function computes the inverse of the special "matrix" 
   # returned by makeCacheMatrix above. 
